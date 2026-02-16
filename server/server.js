@@ -6,6 +6,7 @@ const PORT = 3000;
 
 // temporary "database"
 const users = []; // each user = { username, password }
+let recipes = [];
 
 // tell server where frontend files live
 app.use(express.static(path.join(__dirname, "../client")));
@@ -65,4 +66,23 @@ app.post("/login", (req, res) => {
 app.listen(PORT, ()=>{
     console.log("Server running on http://localhost:" + PORT);
 });
+
+// Get all recipes
+app.get("/recipes", (req,res) => {
+  res.json(recipes);
+});
+
+// Add a new recipe
+app.post("/recipes", (req, res) => {
+  const { title, time, servings, ingredients, instructions } = req.body;
+
+  // Simple validation
+  if(!title || !time) return res.status(400).send("Title and time are required");
+
+  const newRecipe = { title, time, servings, ingredients, instructions };
+  recipes.push(newRecipe);
+
+  res.json({ message: "Recipe added", recipe: newRecipe });
+});
+
 

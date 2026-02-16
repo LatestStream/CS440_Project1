@@ -1,4 +1,35 @@
+<link rel="stylesheet" href="/css/dashboard.css">
+
 <h1>Dashboard</h1>
 <p>Welcome to your recipe dashboard</p>
 
+<h2>Add a New Recipe</h2>
+<form id="add-recipe-form">
+  <div class="form-group">
+    <label for="title">Title</label>
+    <input type="text" id="title" name="title" required>
+  </div>
+  <div class="form-group">
+    <label for="time">Cooking Time (minutes)</label>
+    <input type="number" id="time" name="time" required>
+  </div>
+  <div class="form-group">
+    <label for="servings">Serving Size</label>
+    <input type="number" id="servings" name="servings">
+  </div>
+  <div class="form-group">
+    <label for="ingredients">Ingredients</label>
+    <textarea id="ingredients" name="ingredients" rows="4"></textarea>
+  </div>
+  <div class="form-group">
+    <label for="instructions">Instructions</label>
+    <textarea id="instructions" name="instructions" rows="4"></textarea>
+  </div>
+  <button type="submit">Add Recipe</button>
+</form>
+
+<h2>All Recipes</h2>
+<ul id="recipe-list"></ul>
+
 <a href="/">Logout</a>
+<script src="/js/dashboard.js"></script>
