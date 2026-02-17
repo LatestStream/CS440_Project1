@@ -59,11 +59,10 @@
   font-size: 0.95rem;
 }
 
-/* Optional: style the form above the cards */
+
 #add-recipe-form {
   max-width: 600px;
-  margin: 20px auto;
-  padding: 15px;
+  padding: 20px;
   border: 1px solid #ddd;
   border-radius: 10px;
   background-color: #f9f9f9;
