@@ -1,28 +1,36 @@
 const express = require("express");
 const path = require("path");
 
+const bodyParser = require('body-parser');
+const { showRecipes, createRecipe } = require('../controllers/recipeController');
+
 const app = express();
 const PORT = 3000;
+
+app.use(bodyParser.json());
+app.use(express.static('views')); // serve dashboard.js and HTML
+
+
 
 // temporary "database"
 const users = []; // each user = { username, password }
 let recipes = [];
 
 // tell server where frontend files live
-app.use(express.static(path.join(__dirname, "../client")));
+app.use(express.static(path.join(__dirname, "../views")));
 
 // routes
 app.get("/", (req,res)=>{
-    res.sendFile(path.join(__dirname,"../client/pages/login.html"));
+    res.sendFile(path.join(__dirname,"../views/pages/login.html"));
 });
 
 
 app.get("/dashboard", (req,res)=>{
-    res.sendFile(path.join(__dirname,"../client/pages/dashboard.html"));
+    res.sendFile(path.join(__dirname,"../views/pages/dashboard.html"));
 });
 
 app.get("/signup", (req,res)=>{
-    res.sendFile(path.join(__dirname,"../client/pages/signup.html"));
+    res.sendFile(path.join(__dirname,"../views/pages/signup.html"));
 });
 
 app.use(express.urlencoded({ extended: true })); // to parse form data
@@ -84,5 +92,10 @@ app.post("/recipes", (req, res) => {
 
   res.json({ message: "Recipe added", recipe: newRecipe });
 });
+
+app.get('/recipes', showRecipes);
+app.post('/recipes', createRecipe);
+
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
 
