@@ -11,11 +11,11 @@ def users(path):
         json=request.json
     ).json()
 
-@app.route("/items/<path:path>", methods=["GET","POST","PUT","DELETE"])
-def items(path):
+@app.route("/content/<path:path>", methods=["GET","POST","PUT","DELETE"])
+def content(path):
     return requests.request(
         method=request.method,
-        url=f"http://content_service:5002/items/{path}",
+        url=f"http://content_service:5002/content/{path}",
         json=request.json
     ).json()
 
