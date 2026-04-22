@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  api_gateway:
+    build: ./api_gateway
+    ports:
+      - "5000:5000"
+    depends_on:
+      - user_service
+      - content_service
+      - interaction_service
+
+  user_service:
+    build: ./user_service
+    ports:
+      - "5001:5001"
+
+  content_service:
+    build: ./content_service
+    ports:
+      - "5002:5002"
+
+  interaction_service:
+    build: ./interaction_service
+    ports:
+      - "5003:5003"
